@@ -1,0 +1,123 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-saffron: var(--saffron);
+  --color-gold: var(--gold);
+  --color-peacock: var(--peacock);
+  --color-sky-devotional: var(--sky-devotional);
+  --color-cream: var(--cream);
+  --font-serif-devotional: "Cormorant Garamond", "Playfair Display", serif;
+  --font-sans-devotional: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.875rem;
+  /* Peaceful devotional palette */
+  --cream: oklch(0.985 0.015 85);
+  --saffron: oklch(0.745 0.165 55);
+  --gold: oklch(0.82 0.13 85);
+  --peacock: oklch(0.5 0.11 210);
+  --sky-devotional: oklch(0.92 0.04 230);
+
+  --background: oklch(0.985 0.012 85); /* cream */
+  --foreground: oklch(0.24 0.03 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.24 0.03 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.24 0.03 260);
+  --primary: oklch(0.745 0.165 55); /* saffron */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.92 0.04 230); /* sky */
+  --secondary-foreground: oklch(0.28 0.06 240);
+  --muted: oklch(0.96 0.015 80);
+  --muted-foreground: oklch(0.5 0.03 260);
+  --accent: oklch(0.82 0.13 85); /* gold */
+  --accent-foreground: oklch(0.2 0.04 260);
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0.02 80);
+  --input: oklch(0.92 0.02 80);
+  --ring: oklch(0.745 0.165 55);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background:
+      radial-gradient(ellipse at top, oklch(0.97 0.05 55 / 0.35), transparent 60%),
+      radial-gradient(ellipse at bottom, oklch(0.9 0.06 230 / 0.25), transparent 60%),
+      var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans-devotional);
+    min-height: 100vh;
+  }
+  h1, h2, h3, .devotional-heading {
+    font-family: var(--font-serif-devotional);
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility text-gradient-divine {
+  background: linear-gradient(135deg, var(--saffron), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-divine {
+  background: linear-gradient(135deg, var(--saffron), var(--gold));
+}
+
+@utility card-devotional {
+  background: color-mix(in oklab, white 92%, var(--cream));
+  border: 1px solid color-mix(in oklab, var(--gold) 30%, transparent);
+  box-shadow: 0 10px 30px -12px color-mix(in oklab, var(--saffron) 25%, transparent);
+}
+
+/* Krishna flute loading animation */
+@keyframes flute-float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+@keyframes note-rise {
+  0% { transform: translate(0, 0) scale(0.6); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translate(var(--dx, 20px), -60px) scale(1); opacity: 0; }
+}
+.flute-loader {
+  animation: flute-float 2.4s ease-in-out infinite;
+}
+.music-note {
+  animation: note-rise 2.2s ease-out infinite;
+}
